@@ -14,7 +14,17 @@
     {% else %}
         <a href="{% url 'login' %}">Log-in</a>
     {% endif %}
-    </span>
+</span>
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+            <a href="#" class="close">x</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 <div id="header">
     <span class="logo">My Shop</span>
 </div>
