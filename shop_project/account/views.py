@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
-from .models import Profile
+from .models import Profile, Camping
 from django.contrib import messages
 
 
@@ -31,9 +31,11 @@ def user_login(request):
 
 @login_required
 def main(request):
+    al_camps = Camping.objects.all()
+
     return render(request,
                   'account/main.html',
-                  {'section': 'main'})
+                  {'section': 'main', "al_camps": al_camps})
 
 
 def register(request):
@@ -80,3 +82,10 @@ def edit(request):
                   'account/edit.html',
                   {'user_form': user_form,
                    'profile_form': profile_form})
+
+
+def camping_detail(request, name):
+    camp = get_object_or_404(Camping, slug=name, )
+
+    return render(request, 'account/camp_detail.html',
+                  {'camp': camp, })

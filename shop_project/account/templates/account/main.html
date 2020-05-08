@@ -6,4 +6,13 @@
   <h1>Dashboard</h1>
   <p>Welcome to your dashboard. You can <a href="{% url 'edit' %}">
       edit your profile</a> or <a href="{% url 'password_change' %}">change your password</a>.</p>
+
+<div class="leftcolumn">
+    {% for camps in al_camps %}
+
+    <a href="{{ camps.get_absolute_url }}">
+      {{ camps.name }}  {{camps.voivodeship}}
+    </a>
+</div>
+{% endfor %}
 {% endblock %}

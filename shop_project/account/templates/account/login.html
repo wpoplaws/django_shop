@@ -5,10 +5,21 @@
 {% block content %}
   <h1>Log-in</h1>
   <p>Please, use the following form to log-in. Don't have a account?, click Create an account now.
-    <a href="{% 'register' %}"> create</a></p>
   <form action="." method="post">
     {{ form.as_p }}
     {% csrf_token %}
     <p><input type="submit" value="Log in"></p>
   </form>
+<div class="leftcolumn">
+    {% for camps in al_camps %}
+  <h1>{{camps.name}}</h1>
+
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ camps.name }}
+                    </a>
+</div>
+    {% endfor %}
+
+
+
 {% endblock %}
