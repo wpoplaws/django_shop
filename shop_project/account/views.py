@@ -31,7 +31,7 @@ def user_login(request):
 
 @login_required
 def main(request):
-    al_camps = Camping.objects.all()
+    al_camps = Camping.objects.filter(published='published')
 
     return render(request,
                   'account/main.html',
