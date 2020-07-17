@@ -9,8 +9,21 @@
 <body>
 <span class="user">
       {% if request.user.is_authenticated %}
-        Hello {{ request.user.first_name }},
-        <a href="{% url 'logout'%}">Logout</a>
+        Hello {{ request.user.first_name }}
+
+
+    <a href="{% url 'logout'%}">Logout</a>
+    <a href="{% url 'main' %}"> Home  </a>
+    <a href="{% url 'settings' %}"> Settings  </a>
+    <a href="{% url 'user_list' %}"> Friend finder  </a>
+    <a href="{% url 'profile_view' request.user.profile.get_slug%}"> Yours Friends </a>
+
+
+
+
+
+
+
     {% else %}
         <a href="{% url 'login' %}">Log-in</a>
     {% endif %}
@@ -25,9 +38,7 @@
       {% endfor %}
     </ul>
   {% endif %}
-<div id="header">
-    <span class="logo">My Shop</span>
-</div>
+
 <div id="content">
     {% block content %}
     {% endblock %}
